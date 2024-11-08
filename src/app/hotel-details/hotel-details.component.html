@@ -1,0 +1,259 @@
+<app-header [Home]="'false'"></app-header>
+<div>
+  <div class="card">
+    <p-carousel 
+    [value]="images" 
+    [numVisible]="5" 
+    [numScroll]="3" 
+    [circular]="true"
+    
+    [autoplayInterval]="2000"
+    [showIndicators]="false"
+    styleClass="custom-carousel"
+>
+    <ng-template let-product pTemplate="item">
+        <div class="image-container">
+            <img 
+                [src]="product.url" 
+                [alt]="product.name" 
+                class="image-item" 
+            />
+        </div>
+    </ng-template>
+</p-carousel>
+
+</div>
+
+  <div class="main-container d-flex container mt-3">
+      <div class="right-main-container">
+          <div>
+              <div>
+                  <div class="header-container">
+                      <div class="heading-name-div">
+                          <span class="heading-name">{{hotelName}}</span>
+                          <span class="address">{{hotelDetails?.address}}</span>
+                      </div>
+                      <div>
+                          <div>{{hotelDetails?.rating}}</div>
+                          <div>{{hotelDetails?.reviewCount}} Ratings</div>
+                      </div>
+                  </div>
+                  
+                  <div class="complimentary-div mt-3" *ngIf="hotelDetails?.starRating">
+                    <div>
+                      {{hotelDetails.starRating}}⭐ HOTEL
+                    </div>
+                    
+                  </div>
+
+
+                  <div class="mt-3">
+                    <div class="amenities-div">
+                      <h4>Amenities</h4>
+                      <div class="amenities-container mt-2">
+                        <div *ngFor="let amenity of displayedAmenities">{{ amenity.name }}</div>
+                      </div>
+                      <div>
+                        <button class="toggle-view-button" *ngIf="!showAll" (click)="showMore()">Show More</button>
+                        <button class="toggle-view-button" *ngIf="showAll" (click)="showLess()">Show Less</button>
+                      </div>
+                    </div>
+                    
+
+                    <div class="about-div">
+                      <h4>About this Hotel</h4>
+                      
+                      <!-- Truncated description with "Show More" button -->
+                      <ng-container *ngIf="!showMoreD; else fullDescription">
+                        <div [innerHTML]="getTruncatedDescription()"></div>
+                        <button class="toggle-view-button" (click)="showMoreD = true">Show More</button>
+                      </ng-container>
+                    
+                      <!-- Full description with "Show Less" button -->
+                      <ng-template #fullDescription>
+                        <div [innerHTML]="hotelDetails?.hotelDescription"></div>
+                        <button class="toggle-view-button" (click)="showMoreD = false">Show Less</button>
+                      </ng-template>
+                    </div>
+                    
+                    
+
+                    <div class="room-choose-div">
+                      <h4>Choose Your Room</h4>
+                  
+                      <div *ngFor="let room of hotelDetails?.rooms; let i = index"  class="card">
+                          <div class="category-name-div">
+                              <div class="category-title">{{ room?.roomName }}</div>
+                          </div>
+                  
+                          <div class="category-second-div d-flex align-items-center">
+                              <div class="room-info">
+                                  <div class="d-flex gap-3 room-desc">
+                                      <span class="amenity" [innerHTML]="room?.description"></span>
+                                  </div>
+                                  <div class="room-size">Room size: {{ room?.roomSizeSquare }} <sup>
+                                    {{ room?.roomSizeUnit }}
+                                  </sup></div>
+                                  
+                              </div>
+                              <div class="room-img-container">
+                                  <img class="room-img" [src]="room?.photos[0].url" alt="Room Image">
+                              </div>
+                          </div>
+                          <div class="amount-div d-flex justify-content-between align-items-center">
+                              <div class="price-info">
+                                  <span class="price">{{ hotelRoomRatesData?.roomTypes[i].offerRetailRate.currency}} {{ hotelRoomRatesData?.roomTypes[i].offerRetailRate.amount}}</span>
+                                  <span class="original-price">{{hotelRoomRatesData?.roomTypes[i].suggestedSellingPrice.currency }} {{hotelRoomRatesData?.roomTypes[i].suggestedSellingPrice.amount }}</span>
+                                  <!-- <div class="taxes-fee">
+                                      <span>+₹{{ room.taxesAndFees }} taxes & fees</span>
+                                  </div> -->
+                              </div>
+                              <div class="select-button-container">
+                                  <button class="btn btn-select" (click)="selectRoom(i)">Select</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  
+
+                  <div class="reviews-section">
+                    <h4>Guest Reviews</h4>
+                    <div class="reviews-container">
+                        <div *ngFor="let review of reviews" class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-name">{{ review.name }}</div>
+                                <div class="review-date">{{ review.date | date: 'MMM d, y' }}</div>
+                            </div>
+                            <div class="review-rating">
+                                <span>Rating:</span>
+                                <ng-container *ngFor="let star of getStars(review.averageScore)">
+                                    <span class="star">★</span>
+                                </ng-container>
+                                <span>({{ review.averageScore }})</span>
+                            </div>
+                            <div class="review-text">
+                                {{ review.headline }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                  </div>
+              </div>
+          </div>
+
+      </div>
+      <div class="card-main-container card">
+        <div class="login-heading">
+          <span class="login-title">
+            LOGIN NOW TO GET UPTO 15% LOWER PRICES
+          </span>
+          <button class="login-btn">LOGIN</button>
+        </div>
+        <div class="p-4">
+          
+          <!-- Selected Room Name -->
+          <!-- Selected Room Name -->
+<div class="selected-room-name mb-3">
+  <h5>{{ selectedRoom?.roomName }}</h5>
+</div>
+
+<!-- Room Price Details with Loading Animation -->
+<div class="price-div">
+  <!-- Display loading animation until price data is available -->
+  <div *ngIf="isPriceLoading" class="loading-container">
+    <div class="loading-animation">Loading room rates...</div>
+  </div>
+
+  <!-- Display room price details once loaded -->
+  <div class="d-flex gap-3 align-items-center" *ngIf="!isPriceLoading">
+    <span class="rs">{{ hotelRoomRatesData.roomTypes[selectedIndex].offerRetailRate.currency }} {{ hotelRoomRatesData.roomTypes[selectedIndex].offerRetailRate.amount }}</span>
+    <span class="actual-price">{{ hotelRoomRatesData.roomTypes[selectedIndex].suggestedSellingPrice.currency }} {{ hotelRoomRatesData.roomTypes[selectedIndex].suggestedSellingPrice.amount }}text</span>
+    <span class="discount">75% off</span>
+  </div>
+
+  <!-- Taxes and fees section -->
+  <!-- <div class="taxes">+ taxes & fees: 188</div> -->
+</div>
+
+          
+          <div class="date-guest-selector">
+            <div class="col-md-6 col-sm-4 home-search-widget__gutter mb-2 mb-md-0">
+              <div class="date-picker-desktop d-flex align-items-center">
+                <input class="form-control" placeholder="Check-in date"
+                       name="startDate"
+                       ngbDatepicker
+                       [(ngModel)]="startDate"
+                       #d1="ngbDatepicker"
+                       (click)="d1.toggle()">
+                <span class="date-picker-desktop__arrow-wrapper"></span>
+                <input class="form-control" placeholder="Check-out date"
+                       name="endDate"
+                       ngbDatepicker
+                       [(ngModel)]="endDate"
+                       #d2="ngbDatepicker"
+                       (click)="d2.toggle()">
+              </div>
+            </div>
+          
+            <!-- Room and Guest Selector -->
+            <div class="col-md-6 col-sm-6 home-search-widget__gutter mb-3 mb-md-0">
+              <div class="guest-room-picker form-control">
+                <div class="d-flex justify-content-between align-items-center" (click)="togglePopup()">
+                  <span>{{ roomCount }} Room, {{ guestCount }} Guest</span>
+                </div>
+                <div class="guest-room-picker-popup mt-2" *ngIf="popupVisible">
+                  <div class="d-flex align-items-center mb-2">
+                    <span>Room</span>
+                    <button class="btn btn-light mx-2" (click)="decreaseRoom()">-</button>
+                    <span>{{ roomCount }}</span>
+                    <button class="btn btn-light" (click)="increaseRoom()">+</button>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <span>Guest</span>
+                    <button class="btn btn-light mx-2" (click)="decreaseGuest()">-</button>
+                    <span>{{ guestCount }}</span>
+                    <button class="btn btn-light" (click)="increaseGuest()">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <div>
+              <span>WELCOME80 coupon applied</span>
+            </div>
+          </div>
+      
+          <hr>
+          <div class="amount-main-container">
+            <div class="d-flex justify-content-between">
+              <div class="price-label">Your Savings</div>
+              <div class="price">1434</div>
+            </div>
+            <div class="total-price-div">
+              <div class="d-flex justify-content-between">
+                <div class="price-label">Total price</div>
+                <div class="price">1150</div>
+              </div>
+              <div class="taxes">Including taxes & fees</div>
+            </div>
+      
+            <div class="d-flex justify-content-center">
+              <button class="booking-btn" (click)="continueBooking()" >Continue to Book</button>
+            </div>
+      
+            <div class="d-flex flex-column">
+              <span class="guest-policies">Cancellation Policy</span>
+              <span>By proceeding, you agree to our 
+                <span class="guest-policies"> Guest Policies.</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<header>
+  <div class="left">
+    <mat-icon (click)="navigateHome()" aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+
+    <p class="logo">Book My Hotel</p>
+  </div>
+  <div class="right">
+    <!-- Country Selector -->
+    <div class="header-country-selector">
+      <button class="btn btn-dark rounded-circle" (click)="toggleDropdown()">
+        <span style="padding: 10px;" class="material-icons ">{{selectedCountry}}</span>
+      </button>
+      <div class="country-popup mt-2" *ngIf="dropdownVisible">
+        <div class="popup-content">
+          <select [(ngModel)]="selectedCountry" (change)="onCountryChange($event)" class="form-select">
+            <option *ngFor="let country of countries" [value]="country.code">
+              {{ country.name }}
+            </option>
+          </select>
+          <button class="btn btn-light mt-2" (click)="toggleDropdown()">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="my-booking"> <img src="assets/images/calender.svg" alt=""> My Bookings</button>
+    <!-- <button class="login" >Register</button> -->
+    <button class="login" (click)="auth.loginWithRedirect()">Sign in</button>
+    <button class="login" (click)="auth.logout({ logoutParams: { returnTo: document.location.origin } })">
+      Log out
+    </button>
+  </div>
+
+</header>
+
+@if (Home == 'true') {
+
+  <div class="sub-header">
+    <div class="carousel-wrapper">
+      <!-- Carousel -->
+      <div class="carousel-image">
+  
+        <ngb-carousel *ngIf="images">
+          <ng-template ngbSlide *ngFor="let img of images; let i = index">
+            <div class="wave-effect">
+              <img [src]="img" alt="Slide {{ i + 1 }}">
+            </div>
+          </ng-template>
+        </ngb-carousel>
+  
+      </div>
+  
+      <!-- Fixed Overlay Content -->
+      <div class="caption">
+        <app-date-guest-selector class="selector"></app-date-guest-selector>
+      </div>
+  
+  
+    </div>
+  </div>
+}@else if (Home == 'false'){
+  <div class="sub-header-2">
+    <div class="carousel-wrapper">  
+      <!-- Fixed Overlay Content -->
+      <div class="bg-img">
+        <img src="assets/images/image1.jpg" alt="">
+        <app-date-guest-selector class="selector-2"></app-date-guest-selector>
+      </div>
+      
+  
+  
+    </div>
+  </div>
+}
+@else if (Home == 'none') {
+  
+}

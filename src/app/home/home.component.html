@@ -1,0 +1,53 @@
+<app-header [Home]="'true'"></app-header>
+<div class="home-container">
+
+    
+
+       
+    <div class="section">
+        <section class="recent-search">
+          <h2>Recommended hotels</h2>
+          <div class="card-container">
+            <ng-container *ngFor="let hotel of recommendedHotels">
+              <div class="card" *ngIf="hotel.main_photo && hotel.hotelDescription">
+                <img [src]="hotel.main_photo" alt="Hotel Image" class="card-img">
+                <div class="card-body">
+                  <h6>{{ hotel.name }}</h6>
+                  <hr />
+                  <p class="card-description">
+                    <span [innerHTML]="getDescription(hotel)"></span>
+                    <a *ngIf="hotel.isLongDescription" (click)="toggleDescription(hotel)" class="read-more-link">
+                      {{ hotel.isExpanded ? 'Read Less' : 'Read More' }}
+                    </a>
+                  </p>
+                  <!-- <p class="card-price">{{ hotel.currency }} {{ hotel.price || '1000' }} per night</p> -->
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </section>
+      
+        <section class="recent-search">
+          <h2>Nearby hotels</h2>
+          <div class="card-container">
+            <ng-container *ngFor="let hotel of nearbyHotels">
+              <div class="card" *ngIf="hotel.main_photo && hotel.hotelDescription">
+                <img [src]="hotel.main_photo" alt="Hotel Image" class="card-img">
+                <div class="card-body">
+                  <h6>{{ hotel.name }}</h6>
+                  <hr />
+                  <p class="card-description">
+                    <span [innerHTML]="getDescription(hotel)"></span>
+                    <a *ngIf="hotel.isLongDescription" (click)="toggleDescription(hotel)" class="read-more-link">
+                      {{ hotel.isExpanded ? 'Read Less' : 'Read More' }}
+                    </a>
+                  </p>
+                  <!-- <p class="card-price">{{ hotel.currency }} {{ hotel.price || '1000' }} per night</p> -->
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </section>
+      </div>
+         
+</div>

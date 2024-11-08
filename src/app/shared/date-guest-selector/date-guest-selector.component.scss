@@ -1,0 +1,97 @@
+.search-container {
+  width: -webkit-fill-available;
+}
+
+.search-container__wrapper {
+  
+}
+
+.home-search-widget {
+  display: flex;
+  align-items: center;
+  background-color: #76faff;
+  padding: 4px;
+}
+
+.home-search-widget__gutter {
+  padding: 0 2px;
+}
+
+.autocomplete-desktop__search-container {
+
+  width: 100%;
+  
+  border-radius: 4px;
+  .input {
+      width: 100%;
+  }
+}
+
+.date-picker-desktop {
+  display: flex;
+  align-items: center;
+}
+
+.date-picker-desktop__arrow-wrapper {
+  margin: 0 2px;
+  color: #000;
+}
+
+.guest-room-picker {
+  position: relative;
+  background-color: #fff;
+  color: #565d63;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.guest-room-picker-popup {
+  position: absolute;
+  padding: 4px;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  display: none;
+}
+
+ .guest-room-picker-popup {
+  display: block;
+}
+
+.btn-black-background {
+  background-color: black;
+  color: white;
+  /* border: none; */
+  width: 100%;
+}
+
+.btn-black-background:hover {
+  background-color: #333; /* Slightly lighter shade for hover effect */
+}
+/* Add this to your date-guest-selector.component.scss */
+
+.autocomplete-container {
+  position: relative; /* Position relative to its container */
+}
+
+.autocomplete-list {
+  position: absolute; /* Position absolutely within the container */
+  top: 100%; /* Position directly below the input field */
+  left: 0;
+  right: 0;
+  background: white; /* Set a background for better visibility */
+  border: 1px solid #ccc;
+  max-height: 200px; /* Set a maximum height to enable scrolling if needed */
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.autocomplete-item {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.autocomplete-item:hover {
+  background-color: #f0f0f0; /* Highlight item on hover */
+}

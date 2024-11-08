@@ -1,0 +1,20 @@
+.wrapper {
+  position: relative;
+ }
+ 
+ // .content {
+ //   flex: 1;
+ //   overflow-y: auto;
+ // }
+ 
+ app-header {
+   z-index: 1000; /* Ensures the header stays on top */
+ }
+ 
+ // .content {
+   
+ // }
+ 
+ // app-footer {
+ //   /* Footer styles */
+ // }

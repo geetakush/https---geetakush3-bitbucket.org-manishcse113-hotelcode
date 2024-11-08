@@ -1,0 +1,184 @@
+<app-header [Home]="'none'"></app-header>
+
+<div class="container"  >
+  <div class="wrapper" >
+
+  
+  <div class="d-flex gap-3" >
+    <div class="d-flex flex-column gap-3" style="margin-top: 80px;">
+      <div class="card d-flex flex-row gap-3 p-3 shadow">
+        <div class="d-flex flex-column gap-4">
+          <div class="d-flex gap-3">
+            <div class="image-container d-flex gap-2">
+              <div>
+                <img src="assets/images/image1.jpg" class="main-image">
+              </div>
+            </div>
+            <div class="content-container">
+              <div>
+                <h4>Rhythm Gurugram, Hotel & Suites, Sohna Road</h4>
+                <span class="address">Gurgaon South - Manesar</span>
+              </div>
+              <div class="d-flex gap-2">
+                <span>9.9</span>
+                <span>EXCEPTIONAL |<span>5 - STAR HOTEL</span></span>
+                <span>Excellent</span>
+              </div>
+              <div class="d-flex gap-2">
+                <span>Fully Refundable <span>Until 1:59PM (property local time) on Oct 1</span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="middle-container">
+            <div>
+              <div>CHECK-IN</div>
+              <div>Tue, Oct 1, 2024</div>
+            </div>
+            <div>
+              <div>CHECK-OUT</div>
+              <div>Thu, Oct 3, 2024</div>
+            </div>
+            <div>
+              <div>NIGHTS</div>
+              <div>2</div>
+            </div>
+            <div>
+              <div>ROOMS</div>
+              <div>1</div>
+            </div>
+          </div>
+
+          <!-- <div>
+            <div>Deluxe Suite with 10% off on Buffet Meals & Spa</div>
+            <div class="entities">
+              <span>1 King
+                Bed</span><span>Kitchenette</span><span>Fridge</span><span>Microwave</span><span>Free
+                Wifi</span><span>Free
+                Parking</span>
+            </div>
+          </div> -->
+        </div>
+      </div>
+
+      <div class="card p-3 shadow">
+        <div>The guest checking into each hotel room must be 21 or older</div>
+        <h3 class="mt-3">Guest Name</h3>
+        <div class="input-boxes">
+          <div class="form-group mb-3">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="Enter First Name">
+          </div>
+          <div class="form-group mb-3">
+            <label for="middleName">Middle Name</label>
+            <input type="text" class="form-control" id="middleName" placeholder="Enter Middle Name">
+          </div>
+          <div class="form-group mb-3">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name">
+          </div>
+          <div class="form-group mb-3">
+            <label for="contactNumber">Contact Number</label>
+            <input type="text" class="form-control" id="contactNumber" placeholder="Enter Contact Number">
+          </div>
+        </div>
+      </div>
+      
+    
+      
+    
+  </div>
+  <div class="card-main-container card shadow" style="margin-top: 80px;">
+    <!-- <div class="login-heading">
+        <span class="login-title">
+            LOGIN NOW TO GET UPTO 15% LOWER PRICES
+        </span>
+        <button class="login-btn">LOGIN</button>
+    </div> -->
+    <div class="p-4">
+        <div class="price-div">
+            <div class="d-flex gap-3 align-items-center">
+                <span class="rs">RS 831</span>
+                <span class="actual-price">3441</span>
+                <span class="discount">75% off</span>
+            </div>
+            <div class="taxes">+ taxes & fees: 188</div>
+        </div>
+        <!-- <div class="date-guest-selector">
+          <div class="col-md-6 col-sm-4 home-search-widget__gutter mb-2 mb-md-0">
+            <div class="date-picker-desktop d-flex align-items-center">
+              <input class="form-control" placeholder="Check-in date"
+                     name="startDate"
+                     ngbDatepicker
+                     [(ngModel)]="startDate"
+                     #d1="ngbDatepicker"
+                     (click)="d1.toggle()">
+              <span class="date-picker-desktop__arrow-wrapper"></span>
+              <input class="form-control" placeholder="Check-out date"
+                     name="endDate"
+                     ngbDatepicker
+                     [(ngModel)]="endDate"
+                     #d2="ngbDatepicker"
+                     (click)="d2.toggle()">
+            </div>
+          </div>
+  
+        
+          <div class="col-md-6 col-sm-6 home-search-widget__gutter mb-3 mb-md-0">
+            <div class="guest-room-picker form-control">
+              <div class="d-flex justify-content-between align-items-center" (click)="togglePopup()">
+                <span>{{ roomCount }} Room, {{ guestCount }} Guest</span>
+              </div>
+              <div class="guest-room-picker-popup mt-2" *ngIf="popupVisible">
+                <div class="d-flex align-items-center mb-2">
+                  <span>Room</span>
+                  <button class="btn btn-light mx-2" (click)="decreaseRoom()">-</button>
+                  <span>{{ roomCount }}</span>
+                  <button class="btn btn-light" (click)="increaseRoom()">+</button>
+                </div>
+                <div class="d-flex align-items-center">
+                  <span>Guest</span>
+                  <button class="btn btn-light mx-2" (click)="decreaseGuest()">-</button>
+                  <span>{{ guestCount }}</span>
+                  <button class="btn btn-light" (click)="increaseGuest()">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <!-- <div>
+            <div>
+                <span>WELCOME80 coupon applied</span>
+            </div>
+        </div> -->
+
+        <hr>
+        <div class="amount-main-container">
+            <div class="d-flex justify-content-between">
+                <div class="price-label">Your Savings</div>
+                <div class="price">1434</div>
+            </div>
+            <div class="total-price-div">
+                <div class="d-flex justify-content-between">
+                    <div class="price-label">Total price</div>
+                    <div class="price">1150</div>
+                </div>
+                <div class="taxes">Including taxes & fees</div>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button class="book-btn">Pay & Book</button>
+            </div>
+
+            <div class="d-flex  flex-column">
+                <span class="guest-policies">Cancellation Policy</span>
+                <span>By proceeding, you agree to our <span class="guest-policies"> Guest
+                        Policies.</span></span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</div>

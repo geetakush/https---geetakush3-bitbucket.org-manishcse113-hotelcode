@@ -1,0 +1,156 @@
+<app-header [Home]="'false'"></app-header>
+<!-- <app-google-map *ngIf="currentPageList.length>1" [hotels]="currentPageList"></app-google-map> -->
+
+<div class="hotel-list container">
+  <div class="row">
+    <!-- Left: Filters -->
+    <div class="col-md-2 my-4">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5>Filters</h5>
+        </div>
+        <div class="card-body">
+          <!-- Budget Filter -->
+          <div class="filter-category">
+            <h6>Budget</h6>
+            <input type="range" class="form-range" id="budgetRange" [(ngModel)]="budgetRange" min="0" max="200"
+              step="10">
+            <p>Budget: ${{ budgetRange }}</p>
+          </div>
+          <hr>
+
+          <!-- Star Rating Filter -->
+          <div class="filter-category">
+            <h6>Star Rating</h6>
+            <input type="range" class="form-range" id="starRatingRange" [(ngModel)]="starRating" min="1" max="5"
+              step="1">
+            <p>Star Rating: {{ starRating }}⭐</p>
+          </div>
+
+          <hr>
+
+          <!-- Property Type Filter -->
+          <div class="filter-category">
+            <h6>Property Type</h6>
+            <div>
+              <input type="checkbox" id="hotel" name="propertyType" value="hotel">
+              <label for="hotel">Hotel</label>
+            </div>
+            <div>
+              <input type="checkbox" id="hostel" name="propertyType" value="hostel">
+              <label for="hostel">Hostel</label>
+            </div>
+            <div>
+              <input type="checkbox" id="resort" name="propertyType" value="resort">
+              <label for="resort">Resort</label>
+            </div>
+            <div>
+              <input type="checkbox" id="apartment" name="propertyType" value="apartment">
+              <label for="apartment">Apartment</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div *ngIf="loading" class="loading-screen">
+      <div class="spinner"></div>
+      <p>Loading hotels, please wait...</p>
+    </div>
+    <!-- Right: Hotel List and Pagination -->
+    <div *ngIf="!loading" class="col-md-10 my-4">
+
+      <ng-container *ngIf="currentPageList.length > 0">
+
+        <ng-container *ngFor="let hotel of currentPageList">
+          <div class="d-flex gap-3" *ngIf="hotel.data?.hotelImages && hotel.data.hotelImages.length > 0">
+            <div class="image-container d-flex gap-2">
+              <div>
+                <img [src]="hotel.data.hotelImages[0].url" class="main-image" *ngIf="hotel.data.hotelImages[0]?.url">
+              </div>
+              <!-- Mini images section, uncomment if needed -->
+              <!-- <div class="d-flex flex-column gap-1">
+                <img src="/assets/images/room1.jpeg" class="mini-image">
+                <img src="/assets/images/room2.jpeg" class="mini-image">
+                <img src="/assets/images/room3.jpeg" class="mini-image">
+                <img src="/assets/images/room4.jpeg" class="mini-image">
+                <img src="/assets/images/room5.jpeg" class="mini-image">
+            </div> -->
+            </div>
+            <div class="content-container">
+              <div>
+                <div>
+                  <h3>{{ getHotelName(hotel.data.id) }}</h3>
+                  <span class="address">{{ hotel.data.address }}</span>
+                  <!-- <button (click)="openMapDialog(hotel.data.location)">show on map</button> -->
+                </div>
+                <div class="d-flex gap-2">
+                  <span>4.6</span>
+                  <span>(6 Ratings)</span>
+                  <span>Excellent</span>
+                </div>
+                <div class="d-flex gap-2">
+                  <ul class="facilities-list">
+                    <li *ngFor="let facility of (hotel.data?.hotelFacilities || []).slice(0, 4)">
+                      <i class="fas fa-check-circle green-tick"></i> {{ facility }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- <div *ngIf="loading" class="loading-screen">
+                <div class="spinner"></div>
+                <p>Loading rates</p>
+              </div> -->
+              <div class="d-flex justify-content-between">
+
+                <div>
+
+
+                  <h2>
+                    {{hotel?.hotelartes?.roomTypes[0]?.rates[0]?.retailRate?.suggestedSellingPrice[0]?.amount|currency}}
+                  </h2>
+                  <div>
+
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="actual-price">&nbsp;4034</span>
+                      <span class="discount">&nbsp;71% off</span>
+                    </div>
+                  </div>
+
+
+
+
+                </div>
+
+                <div class="d-flex align-items-center gap-1">
+                  <button (click)="onViewDetails(hotel.data.id , getHotelName(hotel.data.id))" class="details-btn">View
+                    Details</button>
+                  <button (click)="onBookHotel(hotel.data.id , getHotelName(hotel.data.id))" class="book-btn">Book
+                    Now</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <hr />
+        </ng-container>
+      </ng-container>
+      <!-- Pagination Controls -->
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <a class="page-link" (click)="previousPage()">Previous</a>
+          </li>
+          <li class="page-item disabled">
+            <span class="page-link">Page {{ currentPage }} of {{ totalPages }}</span>
+          </li>
+          <li class="page-item" [class.disabled]="currentPage === totalPages">
+            <a class="page-link" (click)="nextPage()">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

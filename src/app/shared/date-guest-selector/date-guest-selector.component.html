@@ -1,0 +1,88 @@
+<div class="row col-md-12 col-sm-6  ">
+  <div class="search-container__wrapper " >
+
+    <div class="no-gutters align-items-center home-search-widget "  >
+
+      <!-- Country Input -->
+      <div class="col-md-2 col-sm-6 home-search-widget__gutter  mb-3 mb-md-0">
+        <form class="example-form ">
+          <input  type="text" placeholder="Select Country" [formControl]="countryControl" [matAutocomplete]="autoCountry"
+            class="form-control" style="padding-left: 2px;padding-right: 2px;" >
+          <mat-autocomplete #autoCountry="matAutocomplete" (optionSelected)="onCountrySelected($event)">
+            <mat-option *ngFor="let country of filteredCountries | async" [value]="country.name">
+              {{ country.name }} <!-- Changed from country.name to country.country -->
+            </mat-option>
+          </mat-autocomplete>
+        </form>
+      </div>
+
+      <!-- City/Airport Input -->
+      <div class="col-md-3 col-sm-6 home-search-widget__gutter mb-3 mb-md-0">
+        <form class="example-form">
+          <input type="text" placeholder="Search City or Airport" [formControl]="control" [matAutocomplete]="autoCity"
+            class="form-control">
+          <mat-autocomplete #autoCity="matAutocomplete" (optionSelected)="onCityOrAirportSelected($event)">
+            <mat-option *ngFor="let street of filteredStreets | async" [value]="getDisplayValue(street)">
+              {{ getDisplayValue(street) }}
+            </mat-option>
+          </mat-autocomplete>
+        </form>
+      </div>
+
+
+      <!-- Date Picker -->
+      <div class="col-md-3 col-sm-4 home-search-widget__gutter mb-2 mb-md-0">
+        <div class="date-picker-desktop d-flex align-items-center">
+          <input class="form-control" placeholder="Check-in date" name="startDate" ngbDatepicker [(ngModel)]="startDate"
+            #d1="ngbDatepicker" (click)="d1.toggle()">
+          <span class="date-picker-desktop__arrow-wrapper"></span>
+          <input class="form-control" placeholder="Check-out date" name="endDate" ngbDatepicker [(ngModel)]="endDate"
+            #d2="ngbDatepicker" (click)="d2.toggle()">
+        </div>
+      </div>
+
+
+      <div class="col-md-3 col-sm-6 home-search-widget__gutter mb-3 mb-md-0">
+        <div class="guest-room-picker form-control">
+          <div class="d-flex justify-content-between align-items-center" (click)="togglePopup()">
+            <span>{{ roomCount }} Room, {{ adultCount }} Adult, {{ childrenCount }} Children</span>
+          </div>
+          <div class="guest-room-picker-popup mt-2" *ngIf="popupVisible">
+            <div class="d-flex align-items-center mb-2">
+              <span>Room</span>
+              <button class="btn btn-light mx-2" (click)="decreaseRoom()">-</button>
+              <span>{{ roomCount }}</span>
+              <button class="btn btn-light" (click)="increaseRoom()">+</button>
+            </div>
+            <div class="d-flex align-items-center">
+              <span>Adult</span>
+              <button class="btn btn-light mx-2" (click)="decreaseAdult()">-</button>
+              <span>{{ adultCount }}</span>
+              <button class="btn btn-light" (click)="increaseAdult()">+</button>
+            </div>
+            <div class="d-flex align-items-center">
+              <span>Children</span>
+              <button class="btn btn-light mx-2" (click)="decreaseChild()">-</button>
+              <span>{{ childrenCount }}</span>
+              <button class="btn btn-light" (click)="increaseChild()">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search Button -->
+      <div class="col-md-1 col-sm-12 home-search-widget__gutter ">
+        <button class="btn btn-black-background w-100" (click)="search()">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 30" fill="none" stroke="currentColor" stroke-width="4"
+            stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"
+            style="width: 20px; height: 20px;">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</div>

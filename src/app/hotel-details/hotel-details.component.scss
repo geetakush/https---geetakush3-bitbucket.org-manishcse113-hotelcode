@@ -1,0 +1,473 @@
+.custom-carousel .ui-carousel-dot-container {
+  display: none;
+}
+
+.custom-carousel .ui-carousel-content {
+  gap: 0; /* Removes gaps between images */
+}
+
+.custom-carousel .ui-carousel-prev, 
+.custom-carousel .ui-carousel-next {
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  border-radius: 50%; /* Circular arrows */
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.custom-carousel .ui-carousel-prev:hover, 
+.custom-carousel .ui-carousel-next:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Darker on hover */
+}
+
+.custom-carousel .ui-carousel-prev::before, 
+.custom-carousel .ui-carousel-next::before {
+  font-family: "PrimeIcons"; /* Use PrimeNG icons */
+}
+
+.custom-carousel .ui-carousel-prev::before {
+  content: "\e930"; /* PrimeIcon for left arrow */
+}
+
+.custom-carousel .ui-carousel-next::before {
+  content: "\e933"; /* PrimeIcon for right arrow */
+}
+
+.image-container {
+  overflow: hidden;
+}
+
+.image-item {
+  height: 300px;
+  object-fit: cover;
+  width: 100%;
+}
+
+
+.main-container {
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.right-main-container {
+  width: 60%;
+  margin-right: 32px;
+  max-width: 720px;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+}
+
+.heading-name-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading-name {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.address {
+  font-size: 16px;
+}
+
+.complimentary-div {
+  border-radius: 4px;
+  border: solid 1px #eee;
+  background-color: #fff6ee;
+  padding: 8px;
+  display: inline-block;
+
+  :first-child {
+    color: #f49242;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+
+.amenities-div {
+  margin: 32px 0;
+}
+
+.about-div {
+  margin: 32px 0;
+}
+
+.room-choose-div {
+  padding: 20px;
+  background-color: #f8f9fa;
+
+  h4 {
+    color: #333;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .category-name-div {
+    background-color: #76faff;
+    border-radius: 10px 10px 0 0;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+
+    .category-title {
+      font-weight: 600;
+      font-size: 18px;
+    }
+  }
+
+  .category-second-div {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  .room-info {
+    flex: 2;
+
+    .room-name {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .room-desc {
+      width: 95%;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .room-size {
+      font-size: 14px;
+      color: #888;
+    }
+  }
+
+  .room-img-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .room-img {
+      max-width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+  }
+
+  .amount-div {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+
+    .price-info {
+      color: #333;
+
+      .price {
+        font-size: 22px;
+        font-weight: bold;
+        color: #27ae60;
+      }
+
+      .original-price {
+        text-decoration: line-through;
+        color: #bdc3c7;
+        font-size: 16px;
+      }
+
+      .taxes-fee {
+        font-size: 12px;
+        color: #777;
+      }
+    }
+  }
+
+  .select-button-container {
+    display: flex;
+    align-items: center;
+
+    .btn-select {
+      background-color: #76faff;
+      color: #000000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #e1a627;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+
+
+.reviews-section {
+  padding: 1rem;
+  background-color: #f9f9f9;
+}
+
+.reviews-container {
+  max-height: 300px; /* Limit the height */
+  overflow-y: auto; /* Add vertical scroll when necessary */
+  padding-right: 1rem; /* To avoid scroll bar overlap with content */
+  margin-top: 10px;
+}
+
+.review-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #fff;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.reviewer-name {
+  font-weight: bold;
+}
+
+.review-date {
+  color: #888;
+}
+
+.review-rating {
+  margin-bottom: 0.5rem;
+}
+
+.star {
+  color: gold;
+  font-size: 1.2rem;
+}
+
+.review-text {
+  font-size: 0.9rem;
+}
+
+
+.amenities-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.card-main-container {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  min-width: 380px;
+  right: 5%;
+  top: 76px;
+  margin-top: 24px;
+  z-index: 20;
+  max-width: 450px;
+  background: #fff;
+  height: 800px;
+
+  .login-heading {
+    display: flex;
+    opacity: 0.9;
+    border-radius: 4px;
+    align-items: center;
+    padding: 8px 0px;
+    border-radius: 4px;
+    background: linear-gradient(265deg, #76faff, #75f4fd 48%, #64fff7);
+    justify-content: space-around;
+  }
+
+  .login-title {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    color: #111;
+    margin-left: 8px;
+    max-width: 230px;
+  }
+
+  .login-btn {
+    text-transform: uppercase;
+    color: #111;
+    padding: 2px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    letter-spacing: 0.43px;
+    font-weight: bold;
+  }
+
+  .rs {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .actual-price {
+    text-decoration: line-through;
+    font-size: 16px;
+    color: #6d787d;
+  }
+
+  .discount {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f5a623;
+  }
+
+  .taxes {
+    font-size: 12px;
+    color: #6d787d;
+  }
+
+  .amount-main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .price-label {
+      font-size: 14px;
+      color: #222;
+    }
+
+    .price {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.14;
+      color: #000000;
+    }
+
+    .total-price-div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .taxes {
+      font-size: 12px;
+      color: #6d787d;
+      line-height: 1em;
+    }
+
+    .booking-btn{
+      border-radius: 4px;
+      background-color: #76faff;
+      border: 0px;
+      color: #111;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 1.2;
+      padding: 14px;
+      width: 100%;
+      outline: 0;
+  }
+
+    .guest-policies {
+      color: #ee2e24;
+      cursor: pointer;
+    }
+  }
+
+  .date-guest-selector{
+    display: flex;
+  }
+}
+
+
+::ng-deep{
+  .p-carousel-prev{
+    border: none;
+    position: absolute;
+    z-index: 1;
+    background: transparent;
+    img, svg{
+      height: 32px;
+    width: 32px;
+    }
+  }
+  .p-carousel-next {
+    border: none;
+    position: absolute;
+    right: 0px;
+    z-index: 1;
+    background: transparent;
+    img, svg{
+      height: 32px;
+    width: 32px;
+    }
+  }
+
+  
+}
+
+.toggle-view-button{
+  
+    border: none;
+    background: transparent;
+    color: #EE2E24;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Adjust as needed */
+}
+
+.loading-animation {
+  font-size: 16px;
+  color: #333;
+  position: relative;
+  animation: slide-left-right 2s infinite linear;
+}
+
+@keyframes slide-left-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

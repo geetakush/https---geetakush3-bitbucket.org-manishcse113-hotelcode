@@ -1,0 +1,37 @@
+image: python:3.12
+
+definitions:
+  services:
+    docker:
+      memory: 3072
+  steps:
+    - step: &deploy-webapp
+        name: Deploy WebApp
+        script:
+          - apt-get update && apt-get install -y npm # Install npm if not present
+          - pip3 install awscli # install aws cli if not present   
+          - npm i -g @angular/cli
+          - npm --force install
+          - ng build
+          - aws s3 rm s3://${BUCKET} --recursive
+          - aws s3 sync dist/hotelapp/browser s3://${BUCKET}
+          - aws cloudfront create-invalidation --distribution-id ${DISTRIBUTION_ID} --paths "/*"
+          
+  stages:
+    - stage: &deploy-to-dev-stage
+        name: Deploy to Development
+        deployment: Development
+        steps:
+          - step: *deploy-webapp
+    - stage: &deploy-to-staging-stage
+        name: Deploy to Staging
+        deployment: Staging
+        steps:
+          - step: *deploy-webapp
+
+pipelines:
+  branches:
+    dev:
+      - stage: *deploy-to-dev-stage
+    staging:
+      - stage: *deploy-to-staging-stage

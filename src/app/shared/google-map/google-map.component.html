@@ -1,0 +1,16 @@
+<div class="map-container">
+  <google-map height="400px" width="100%" [zoom]="zoom" [center]="center">
+    <map-marker *ngFor="let hotel of hotels" 
+    [position]="{
+      lat: hotel.data.location.latitude,
+      lng: hotel.data.location.longitude
+    }"
+                [label]="hotel.data.name" 
+                (mapClick)="openInfo(hotel)">
+    </map-marker>
+  </google-map>
+</div>
+
+<!-- <div mat-dialog-actions>
+  <button mat-button (click)="onClose()">Close</button>
+</div> -->
